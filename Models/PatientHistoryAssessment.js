@@ -35,7 +35,7 @@ const PatientHistoryAssessmentsSchema = mongoose.Schema(
       required: true,
     },
     chiefComplaint: {
-      type: Number,
+      type: String,
       required: true,
     },
   },

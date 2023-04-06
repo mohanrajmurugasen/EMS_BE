@@ -1,0 +1,70 @@
+components:
+  schemas:
+    VehicleCallDetails:
+      type: object
+      required: true
+      properties:
+        userId:
+          type: string
+        timeNotified:
+          type: string
+        timeEnroute:
+          type: string
+        timeAtScene:
+          type: string
+        crewPatient:
+          type: string
+        timeOutScene:
+          type: string
+        timeAtDestination:
+          type: string
+        available:
+          type: string
+        backArea:
+          type: string
+        responseToScene:
+          type: object
+          properties:
+            type:
+              type: string
+            changeInResponse:
+              type: string
+        responseFromScene:
+          type: object
+          properties:
+            type:
+              type: string
+            changeInResponse:
+              type: string
+        crewType:
+          type: object
+          properties:
+            driver:
+              type: string
+            attendent:
+              type: string
+            assisting:
+              type: string
+        mileage:
+          type: object
+          properties:
+            out:
+              type: string
+            in:
+              type: string
+            atScene:
+              type: string
+            atDestination:
+              type: string
+            total:
+              type: string
+        patientContact:
+          type: string
+        destinationDeterminant:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: string
+        dateModified:
+          type: string

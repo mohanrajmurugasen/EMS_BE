@@ -172,32 +172,93 @@ router.get("/Users", (req, res) => {
   });
 });
 
-router.get("/UsersById/:id", Validation, (req, res) => {
-  const id = req.params.id;
-  jwt.verify(req.token, "Users", async (err, data) => {
-    if (err) {
-      res.status(400).send({
-        message: "Failure",
-        data: err,
+/**
+ * @swagger
+ * /api/UsersById/{_id}:
+ *   get:
+ *     tags:
+ *       - Authentication
+ *     summary: Get a Users by ID
+ *     description: Retrieve a Users's information by their ID
+ *     parameters:
+ *       - in: path
+ *         name: _id
+ *         required: true
+ *         description: ID of the Users to retrieve
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Users found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                   example: 12345
+ *       404:
+ *         description: Users not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Users not found
+ */
+router.get("/UsersById/:_id", (req, res) => {
+  const _id = req.params._id;
+  userModel
+    .find({ _id: _id })
+    .then((response) => {
+      res.status(200).send({
+        message: "Success",
+        data: response,
       });
-    } else {
-      userModel.findById(id, (err, result) => {
-        if (err) {
-          res.status(400).send({
-            message: "Failure",
-            data: err,
-          });
-        } else {
-          res.status(200).send({
-            message: "Successs",
-            data: result,
-          });
-        }
-      });
-    }
-  });
+    })
+    .catch((err) => res.json(err.message));
 });
 
+/**
+ * @swagger
+ * /api/UsersByEmail/{email}:
+ *   get:
+ *     tags:
+ *       - Authentication
+ *     summary: Get a Users by ID
+ *     description: Retrieve a Users's information by their ID
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         required: true
+ *         description: ID of the Users to retrieve
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Users found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 email:
+ *                   type: string
+ *                   example: 12345
+ *       404:
+ *         description: Users not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Users not found
+ */
 router.get("/UsersByEmail/:email", (req, res) => {
   const email = req.params.email;
   userModel
@@ -288,9 +349,43 @@ router.put("/UpdateUsersById/:_id", (req, res) => {
   });
 });
 
-router.delete("/DeleteUsersById/:id", (req, res) => {
-  const id = req.params.id;
-  userModel.findByIdAndRemove(id, (err, result) => {
+/**
+ * @swagger
+ * info:
+ *   title: My API
+ *   description: This is a sample API for demonstration purposes.
+ *   version: 1.0.0
+ *
+ * /api/DeleteUsersById/{_id}:
+ *   delete:
+ *     tags:
+ *       - Authentication
+ *     summary: Delete a Users by ID
+ *     description: Delete a Users's information by their ID
+ *     parameters:
+ *       - in: path
+ *         name: _id
+ *         required: true
+ *         description: ID of the Users to delete
+ *         schema:
+ *           type: string
+ *     responses:
+ *       204:
+ *         description: Users deleted successfully
+ *       404:
+ *         description: Users not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Users not found
+ */
+router.delete("/DeleteUsersById/:_id", (req, res) => {
+  const _id = req.params._id;
+  userModel.findByIdAndRemove(_id, (err, result) => {
     if (err) {
       res.json(err);
     } else {

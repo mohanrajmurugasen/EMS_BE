@@ -116,13 +116,12 @@ router.post("/IncidentCallDetails", async (req, res) => {
   const newDetails = new IncidentCallDetails(details);
   newDetails.save((err, savedObject) => {
     if (err) throw err;
-  
+
     res.status(201).send({
       message: "Your request is successfully submitted!",
-      data: savedObject
+      data: savedObject,
     });
   });
-
 });
 
 /**
@@ -187,17 +186,20 @@ router.get("/IncidentCallDetails", (req, res) => {
  *                   type: string
  *                   example: IncidentCallDetails not found
  */
-router.get("/IncidentCallDetailsByGraphicLocator/:graphicLocator", (req, res) => {
-  const graphicLocator = req.params.graphicLocator;
-  IncidentCallDetails.find({ graphicLocator: graphicLocator })
-    .then((response) => {
-      res.status(200).send({
-        message: "Success",
-        data: response,
-      });
-    })
-    .catch((err) => res.json(err.message));
-});
+router.get(
+  "/IncidentCallDetailsByGraphicLocator/:graphicLocator",
+  (req, res) => {
+    const graphicLocator = req.params.graphicLocator;
+    IncidentCallDetails.find({ graphicLocator: graphicLocator })
+      .then((response) => {
+        res.status(200).send({
+          message: "Success",
+          data: response,
+        });
+      })
+      .catch((err) => res.json(err.message));
+  }
+);
 
 /**
  * @swagger
@@ -250,7 +252,7 @@ router.get("/IncidentCallDetailsById/:_id", (req, res) => {
 
 /**
  * @swagger
- * /api/IncidentCallDetailsDeActive/{_id}:
+ * /api/IncidentCallDetails/{_id}:
  *   put:
  *     summary: Update a IncidentCallDetails by ID
  *     description: Update a IncidentCallDetails's information by ID
@@ -292,7 +294,7 @@ router.get("/IncidentCallDetailsById/:_id", (req, res) => {
  *       404:
  *         description: IncidentCallDetails not found
  */
-router.put("/IncidentCallDetailsDeActive/:_id", (req, res) => {
+router.put("/IncidentCallDetails/:_id", (req, res) => {
   const _id = req.params._id;
   IncidentCallDetails.findById(_id, (err, result) => {
     if (!result) {
@@ -300,48 +302,21 @@ router.put("/IncidentCallDetailsDeActive/:_id", (req, res) => {
         message: "Unable to update data please try again!",
       });
     } else {
-      result.dateOfIncident = req.body.dateOfIncident,
-      result.timeOfIncident = req.body.timeOfIncident,
-      result.incidentLocation = req.body.incidentLocation,
-
-      result
-        .save()
-        .then((user) => {
-          res.status(200).send({
-            message: "Updated Successfully",
+      (result.dateOfIncident = req.body.dateOfIncident),
+        (result.timeOfIncident = req.body.timeOfIncident),
+        (result.incidentLocation = req.body.incidentLocation),
+        result
+          .save()
+          .then((user) => {
+            res.status(200).send({
+              message: "Updated Successfully",
+            });
+          })
+          .catch((err) => {
+            res.status(400).send({
+              message: "Unable to update data please try again!",
+            });
           });
-        })
-        .catch((err) => {
-          res.status(400).send({
-            message: "Unable to update data please try again!",
-          });
-        });
-    }
-  });
-});
-
-router.put("/IncidentCallDetailsActive/:id", (req, res) => {
-  const id = req.params.id;
-  IncidentCallDetails.findById(id, (err, result) => {
-    if (!result) {
-      res.status(400).send({
-        message: "Unable to update data please try again!",
-      });
-    } else {
-      result.status = "Active";
-
-      result
-        .save()
-        .then((user) => {
-          res.status(200).send({
-            message: "Updated Successfully",
-          });
-        })
-        .catch((err) => {
-          res.status(400).send({
-            message: "Unable to update data please try again!",
-          });
-        });
     }
   });
 });
@@ -352,7 +327,7 @@ router.put("/IncidentCallDetailsActive/:id", (req, res) => {
  *   title: My API
  *   description: This is a sample API for demonstration purposes.
  *   version: 1.0.0
- * 
+ *
  * /api/DeleteIncidentCallDetailsById/{_id}:
  *   delete:
  *     tags:

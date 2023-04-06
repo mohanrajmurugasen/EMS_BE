@@ -35,7 +35,7 @@ const PatientAssessmentsSchema = mongoose.Schema(
       required: true,
     },
     trauma: {
-      type: Number,
+      type: String,
       required: true,
     },
   },

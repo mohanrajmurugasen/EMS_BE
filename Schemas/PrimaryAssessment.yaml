@@ -1,0 +1,20 @@
+components:
+  schemas:
+    PrimaryAssessment:
+      type: object
+      required: true
+      properties:
+        userId:
+          type: string
+        neroResponse:
+          type: string
+        bodySystem:
+          type: string
+        glasGlow:
+          type: string
+        generalAssessment:
+          type: string
+        airway:
+          type: string
+        symptoms:
+          type: string

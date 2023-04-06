@@ -1,15 +1,21 @@
-const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerJsdoc = require("swagger-jsdoc");
 
 const options = {
   definition: {
-    openapi: '3.0.0',
+    openapi: "3.0.0",
     info: {
-      title: 'EMS Project',
-      version: '1.0.0',
-      description: 'EMS API documentation',
+      title: "EMS Web API",
+      version: "1.0.0",
+      description: "EMS API documentation",
     },
+    servers: [
+      {
+        url: "EMS-Service",
+        description: "Development server",
+      },
+    ],
   },
-  apis: ['./Routes/*.js'],
+  apis: ["./Routes/*.js", "./Schemas/*.yaml"],
 };
 
 const specs = swaggerJsdoc(options);

@@ -14,29 +14,12 @@ const PatientCallDetailsSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    street: {
-      type: String,
-      required: true,
-    },
-    city: {
-      type: String,
-      required: true,
-    },
-    state: {
-      type: String,
-      required: true,
-    },
-    country: {
-      type: String,
-      required: true,
-    },
-    postalCode: {
-      type: String,
-      required: true,
-    },
-    experience: {
-      type: Number,
-      required: true,
+    address: {
+      street: String,
+      city: String,
+      state: String,
+      country: String,
+      postalCode: String,
     },
     telePhone: {
       type: String,
@@ -66,19 +49,16 @@ const PatientCallDetailsSchema = mongoose.Schema(
       type: String,
       required: false,
     },
-    insuranceId: {
-      type: Number,
-      required: false,
+    governmentInsurance: {
+      insuranceId: String,
+      coverageAmount: String,
+      benefits: String,
     },
-    benefits: {
-      type: String,
-      required: false,
+    privateInsurance: {
+      insuranceId: String,
+      benefits: String,
     },
-    coverageAmount: {
-      type: String,
-      required: false,
-    },
-    chart: {
+    hospitalChart: {
       type: String,
       required: true,
     },
