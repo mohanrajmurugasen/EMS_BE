@@ -43,7 +43,16 @@ let mailTransporter = nodemailer.createTransport({
  *               timeOfIncident:
  *                 type: string
  *               incidentLocation:
- *                 type: string
+ *                 type: object
+ *                 properties:
+ *                     street:
+ *                       type: string
+ *                     city:
+ *                       type: string
+ *                     state:
+ *                       type: string
+ *                     postalCode:
+ *                       type: string
  *               destinationDeterminant:
  *                 type: string
  *               graphicLocator:
@@ -57,9 +66,23 @@ let mailTransporter = nodemailer.createTransport({
  *               destinationLocationType:
  *                 type: string
  *               destinationLocation:
- *                 type: string
+ *                 type: object
+ *                 properties:
+ *                     street:
+ *                       type: string
+ *                     city:
+ *                       type: string
+ *                     state:
+ *                       type: string
+ *                     postalCode:
+ *                       type: string
  *               servicePayment:
- *                 type: string
+ *                 type: object
+ *                 properties:
+ *                     responsibility:
+ *                       type: string
+ *                     number:
+ *                       type: string
  *               EMS:
  *                 type: string
  *               patientDisposition:
@@ -225,15 +248,61 @@ router.get("/IncidentCallDetailsById/:_id", (req, res) => {
     .catch((err) => res.json(err.message));
 });
 
-router.put("/IncidentCallDetailsDeActive/:id", (req, res) => {
-  const id = req.params.id;
-  IncidentCallDetails.findById(id, (err, result) => {
+/**
+ * @swagger
+ * /api/IncidentCallDetailsDeActive/{_id}:
+ *   put:
+ *     summary: Update a user by ID
+ *     description: Update a user's information by ID
+ *     tags:
+ *       - IncidentCallDetails
+ *     parameters:
+ *       - name: _id
+ *         in: path
+ *         description: ID of the user to update
+ *         required: true
+ *         type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               dateOfIncident:
+ *                 type: string
+ *               timeOfIncident:
+ *                 type: string
+ *               incidentLocation:
+ *                 type: object
+ *                 properties:
+ *                     street:
+ *                       type: string
+ *                     city:
+ *                       type: string
+ *                     state:
+ *                       type: string
+ *                     postalCode:
+ *                       type: string
+ *     responses:
+ *       200:
+ *         description: User updated successfully
+ *       400:
+ *         description: Invalid user ID supplied or invalid user object
+ *       404:
+ *         description: User not found
+ */
+router.put("/IncidentCallDetailsDeActive/:_id", (req, res) => {
+  const _id = req.params._id;
+  IncidentCallDetails.findById(_id, (err, result) => {
     if (!result) {
       res.status(400).send({
         message: "Unable to update data please try again!",
       });
     } else {
-      result.status = "DeActive";
+      result.dateOfIncident = req.body.dateOfIncident,
+      result.timeOfIncident = req.body.timeOfIncident,
+      result.incidentLocation = req.body.incidentLocation,
 
       result
         .save()
