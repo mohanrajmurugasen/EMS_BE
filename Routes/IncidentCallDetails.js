@@ -252,14 +252,14 @@ router.get("/IncidentCallDetailsById/:_id", (req, res) => {
  * @swagger
  * /api/IncidentCallDetailsDeActive/{_id}:
  *   put:
- *     summary: Update a user by ID
- *     description: Update a user's information by ID
+ *     summary: Update a IncidentCallDetails by ID
+ *     description: Update a IncidentCallDetails's information by ID
  *     tags:
  *       - IncidentCallDetails
  *     parameters:
  *       - name: _id
  *         in: path
- *         description: ID of the user to update
+ *         description: ID of the IncidentCallDetails to update
  *         required: true
  *         type: string
  *     requestBody:
@@ -286,11 +286,11 @@ router.get("/IncidentCallDetailsById/:_id", (req, res) => {
  *                       type: string
  *     responses:
  *       200:
- *         description: User updated successfully
+ *         description: IncidentCallDetails updated successfully
  *       400:
- *         description: Invalid user ID supplied or invalid user object
+ *         description: Invalid IncidentCallDetails ID supplied or invalid IncidentCallDetails object
  *       404:
- *         description: User not found
+ *         description: IncidentCallDetails not found
  */
 router.put("/IncidentCallDetailsDeActive/:_id", (req, res) => {
   const _id = req.params._id;
