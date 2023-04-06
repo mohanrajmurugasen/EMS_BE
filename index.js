@@ -7,6 +7,7 @@ const Users = require("./Routes/Users");
 const IncidentCallDetails = require("./Routes/IncidentCallDetails");
 const PatientAssessment = require("./Routes/PatientAssessment");
 const PatientCallDetails = require("./Routes/PatientCallDetails");
+const PatientHistoryAssessment = require("./Routes/PatientHistoryAssessment");
 const PatientTreatmentDetails = require("./Routes/PatientTreatmentDetails");
 const PrimaryAssessment = require("./Routes/PrimaryAssessment");
 const VehicleCallDetails = require("./Routes/VehicleCallDetails");
@@ -45,6 +46,7 @@ app.use("/api", PatientTreatmentDetails);
 app.use("/api", PrimaryAssessment);
 app.use("/api", VehicleCallDetails);
 app.use("/api", VitalSignTreatment);
+app.use("/api", PatientHistoryAssessment);
 
 app.listen(PORT, () => {
   console.log(`Server Started successfully on PORT ${PORT}`);
