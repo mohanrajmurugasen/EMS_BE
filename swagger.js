@@ -8,12 +8,6 @@ const options = {
       version: "1.0.0",
       description: "EMS API documentation",
     },
-    servers: [
-      {
-        url: "EMS-Service",
-        description: "Development server",
-      },
-    ],
   },
   apis: ["./Routes/*.js", "./Schemas/*.yaml"],
 };
