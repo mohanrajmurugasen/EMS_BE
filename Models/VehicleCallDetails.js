@@ -35,7 +35,7 @@ const VehicleCallDetailsSchema = mongoose.Schema(
       required: true,
     },
     backArea: {
-      type: Number,
+      type: String,
       required: true,
     },
     responseToScene: {

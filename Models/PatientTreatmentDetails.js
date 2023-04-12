@@ -35,23 +35,23 @@ const PatientTreatmentDetailsSchema = mongoose.Schema(
       required: true,
     },
     successfull: {
-      type: Number,
+      type: String,
       required: true,
     },
     treatment: {
-      type: Number,
+      type: String,
       required: true,
     },
     totalTime: {
-      type: Number,
+      type: String,
       required: true,
     },
     treatmentType: {
-      type: Number,
+      type: String,
       required: true,
     },
     administrativeRoute: {
-      type: Number,
+      type: String,
       required: true,
     },
   },

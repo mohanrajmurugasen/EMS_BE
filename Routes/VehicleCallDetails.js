@@ -2,9 +2,18 @@ const express = require("express");
 const cors = require("cors");
 const router = express.Router();
 const VehicleCallDetails = require("../Models/VehicleCallDetails");
+const nodemailer = require("nodemailer");
 
 router.use(express.json());
 router.use(cors());
+
+let mailTransporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "mohanraj16119@gmail.com",
+    pass: "zywfxadkscwqyadl",
+  },
+});
 
 /**
  * @swagger
@@ -85,6 +94,10 @@ router.use(cors());
  *                 type: string
  *               dateModified:
  *                 type: string
+ *               email1:
+ *                 type: string
+ *               email2:
+ *                 type: string
  *     responses:
  *       201:
  *         description: VehicleCallDetails created successfully
@@ -113,13 +126,28 @@ router.post("/VehicleCallDetails", async (req, res) => {
     dateModified: req.body.dateModified,
   };
 
+  let mails = {
+    from: "mohanraj16119@gmail.com",
+    to: `${req.body.email2}, ${req.body.email1}`,
+    subject: `Subject`,
+    text: `Text Message`,
+  };
+
   const newDetails = new VehicleCallDetails(details);
   newDetails.save((err, savedObject) => {
     if (err) throw err;
 
-    res.status(201).send({
-      message: "Your request is successfully submitted!",
-      data: savedObject,
+    mailTransporter.sendMail(mails, (err) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Email sending failed!");
+      } else {
+        console.log("Email send successsfully");
+        res.status(201).send({
+          message: "Your request is successfully submitted!",
+          data: savedObject,
+        });
+      }
     });
   });
 });

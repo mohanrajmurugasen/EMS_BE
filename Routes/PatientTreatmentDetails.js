@@ -2,9 +2,18 @@ const express = require("express");
 const cors = require("cors");
 const router = express.Router();
 const PatientTreatmentDetails = require("../Models/PatientTreatmentDetails");
+const nodemailer = require("nodemailer");
 
 router.use(express.json());
 router.use(cors());
+
+let mailTransporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "mohanraj16119@gmail.com",
+    pass: "zywfxadkscwqyadl",
+  },
+});
 
 /**
  * @swagger
@@ -47,6 +56,8 @@ router.use(cors());
  *                 type: string
  *               administrativeRoute:
  *                 type: string
+ *               email:
+ *                 type: string
  *     responses:
  *       201:
  *         description: PatientTreatmentDetails created successfully
@@ -70,13 +81,28 @@ router.post("/PatientTreatmentDetails", async (req, res) => {
     administrativeRoute: req.body.administrativeRoute,
   };
 
+  let mails = {
+    from: "mohanraj16119@gmail.com",
+    to: `${req.body.email}`,
+    subject: `Subject`,
+    text: `Text Message`,
+  };
+
   const newDetails = new PatientTreatmentDetails(details);
   newDetails.save((err, savedObject) => {
     if (err) throw err;
 
-    res.status(201).send({
-      message: "Your request is successfully submitted!",
-      data: savedObject,
+    mailTransporter.sendMail(mails, (err) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Email sending failed!");
+      } else {
+        console.log("Email send successsfully");
+        res.status(201).send({
+          message: "Your request is successfully submitted!",
+          data: savedObject,
+        });
+      }
     });
   });
 });

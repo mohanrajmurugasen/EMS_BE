@@ -13,7 +13,7 @@ let mailTransporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "mohanraj16119@gmail.com",
-    pass: "gasejsgdepyylqoi",
+    pass: "zywfxadkscwqyadl",
   },
 });
 
@@ -87,6 +87,10 @@ let mailTransporter = nodemailer.createTransport({
  *                 type: string
  *               patientDisposition:
  *                 type: string
+ *               email1:
+ *                 type: string
+ *               email2:
+ *                 type: string
  *     responses:
  *       201:
  *         description: IncidentCallDetails created successfully
@@ -113,13 +117,28 @@ router.post("/IncidentCallDetails", async (req, res) => {
     patientDisposition: req.body.patientDisposition,
   };
 
+  let mails = {
+    from: "mohanraj16119@gmail.com",
+    to: `${req.body.email2}, ${req.body.email1}`,
+    subject: `Subject`,
+    text: `Text Message`,
+  };
+
   const newDetails = new IncidentCallDetails(details);
   newDetails.save((err, savedObject) => {
     if (err) throw err;
 
-    res.status(201).send({
-      message: "Your request is successfully submitted!",
-      data: savedObject,
+    mailTransporter.sendMail(mails, (err) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Email sending failed!");
+      } else {
+        console.log("Email send successsfully");
+        res.status(201).send({
+          message: "Your request is successfully submitted!",
+          data: savedObject,
+        });
+      }
     });
   });
 });

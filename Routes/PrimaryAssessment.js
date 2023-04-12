@@ -2,9 +2,18 @@ const express = require("express");
 const cors = require("cors");
 const router = express.Router();
 const PrimaryAssessment = require("../Models/PrimaryAssessment");
+const nodemailer = require("nodemailer");
 
 router.use(express.json());
 router.use(cors());
+
+let mailTransporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "mohanraj16119@gmail.com",
+    pass: "zywfxadkscwqyadl",
+  },
+});
 
 /**
  * @swagger
@@ -35,6 +44,8 @@ router.use(cors());
  *                 type: string
  *               symptoms:
  *                 type: string
+ *               email:
+ *                 type: string
  *     responses:
  *       201:
  *         description: PrimaryAssessment created successfully
@@ -52,13 +63,28 @@ router.post("/PrimaryAssessment", async (req, res) => {
     symptoms: req.body.symptoms,
   };
 
+  let mails = {
+    from: "mohanraj16119@gmail.com",
+    to: `${req.body.email}`,
+    subject: `Subject`,
+    text: `Text Message`,
+  };
+
   const newDetails = new PrimaryAssessment(details);
   newDetails.save((err, savedObject) => {
     if (err) throw err;
 
-    res.status(201).send({
-      message: "Your request is successfully submitted!",
-      data: savedObject,
+    mailTransporter.sendMail(mails, (err) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Email sending failed!");
+      } else {
+        console.log("Email send successsfully");
+        res.status(201).send({
+          message: "Your request is successfully submitted!",
+          data: savedObject,
+        });
+      }
     });
   });
 });
