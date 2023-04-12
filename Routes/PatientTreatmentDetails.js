@@ -120,16 +120,15 @@ router.post("/PatientTreatmentDetails", async (req, res) => {
  *         description: A list of PatientTreatmentDetails
  */
 router.get("/PatientTreatmentDetails", (req, res) => {
-  PatientTreatmentDetails.find({}, (err, result) => {
-    if (err) {
-      res.status(400).send(err);
-    } else {
+  PatientTreatmentDetails.find()
+    .sort({ createdAt: -1 })
+    .then((response) => {
       res.status(200).send({
         message: "Success",
-        data: result,
+        data: response,
       });
-    }
-  });
+    })
+    .catch((err) => res.status(400).send(err));
 });
 
 /**

@@ -156,16 +156,15 @@ router.post("/IncidentCallDetails", async (req, res) => {
  *         description: A list of IncidentCallDetails
  */
 router.get("/IncidentCallDetails", (req, res) => {
-  IncidentCallDetails.find({}, (err, result) => {
-    if (err) {
-      res.status(400).send(err);
-    } else {
+  IncidentCallDetails.find()
+    .sort({ createdAt: -1 })
+    .then((response) => {
       res.status(200).send({
         message: "Success",
-        data: result,
+        data: response,
       });
-    }
-  });
+    })
+    .catch((err) => res.status(400).send(err));
 });
 
 /**

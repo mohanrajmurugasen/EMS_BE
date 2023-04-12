@@ -157,19 +157,16 @@ router.post("/UsersLogin", (req, res) => {
  *         description: A list of users
  */
 router.get("/Users", (req, res) => {
-  userModel.find({}, (err, result) => {
-    if (err) {
-      res.status(400).send({
-        message: "Failure",
-        data: err,
-      });
-    } else {
+  userModel
+    .find()
+    .sort({ createdAt: -1 })
+    .then((response) => {
       res.status(200).send({
-        message: "Successs",
-        data: result,
+        message: "Success",
+        data: response,
       });
-    }
-  });
+    })
+    .catch((err) => res.status(400).send(err));
 });
 
 /**

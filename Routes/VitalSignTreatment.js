@@ -130,16 +130,15 @@ router.post("/VitalSignTreatment", async (req, res) => {
  *         description: A list of VitalSignTreatment
  */
 router.get("/VitalSignTreatment", (req, res) => {
-  VitalSignTreatment.find({}, (err, result) => {
-    if (err) {
-      res.status(400).send(err);
-    } else {
+  VitalSignTreatment.find()
+    .sort({ createdAt: -1 })
+    .then((response) => {
       res.status(200).send({
         message: "Success",
-        data: result,
+        data: response,
       });
-    }
-  });
+    })
+    .catch((err) => res.status(400).send(err));
 });
 
 /**

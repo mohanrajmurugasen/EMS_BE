@@ -108,16 +108,15 @@ router.post("/PatientAssessment", async (req, res) => {
  *         description: A list of PatientAssessment
  */
 router.get("/PatientAssessment", (req, res) => {
-  PatientAssessment.find({}, (err, result) => {
-    if (err) {
-      res.status(400).send(err);
-    } else {
+  PatientAssessment.find()
+    .sort({ createdAt: -1 })
+    .then((response) => {
       res.status(200).send({
         message: "Success",
-        data: result,
+        data: response,
       });
-    }
-  });
+    })
+    .catch((err) => res.status(400).send(err));
 });
 
 /**

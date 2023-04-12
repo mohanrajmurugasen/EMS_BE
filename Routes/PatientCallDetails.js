@@ -151,16 +151,15 @@ router.post("/PatientCallDetails", async (req, res) => {
  *         description: A list of PatientCallDetails
  */
 router.get("/PatientCallDetails", (req, res) => {
-  PatientCallDetails.find({}, (err, result) => {
-    if (err) {
-      res.status(400).send(err);
-    } else {
+  PatientCallDetails.find()
+    .sort({ createdAt: -1 })
+    .then((response) => {
       res.status(200).send({
         message: "Success",
-        data: result,
+        data: response,
       });
-    }
-  });
+    })
+    .catch((err) => res.status(400).send(err));
 });
 
 /**

@@ -102,16 +102,15 @@ router.post("/PrimaryAssessment", async (req, res) => {
  *         description: A list of PrimaryAssessment
  */
 router.get("/PrimaryAssessment", (req, res) => {
-  PrimaryAssessment.find({}, (err, result) => {
-    if (err) {
-      res.status(400).send(err);
-    } else {
+  PrimaryAssessment.find()
+    .sort({ createdAt: -1 })
+    .then((response) => {
       res.status(200).send({
         message: "Success",
-        data: result,
+        data: response,
       });
-    }
-  });
+    })
+    .catch((err) => res.status(400).send(err));
 });
 
 /**
