@@ -50,40 +50,12 @@ let mailTransporter = nodemailer.createTransport({
  *                 type: string
  *               responseToScene:
  *                 type: string
- *                 properties:
- *                     type:
- *                       type: string
- *                     changeInResponse:
- *                       type: string
  *               responseFromScene:
  *                 type: string
- *                 properties:
- *                     type:
- *                       type: string
- *                     changeInResponse:
- *                       type: string
  *               crewType:
- *                 type: object
- *                 properties:
- *                     driver:
- *                       type: string
- *                     attendent:
- *                       type: string
- *                     assisting:
- *                       type: string
+ *                 type: string
  *               mileage:
  *                 type: string
- *                 properties:
- *                     out:
- *                       type: string
- *                     in:
- *                       type: string
- *                     atScene:
- *                       type: string
- *                     atDestination:
- *                       type: string
- *                     total:
- *                       type: string
  *               patientContact:
  *                 type: string
  *               destinationDeterminant:
@@ -250,13 +222,6 @@ router.get("/VehicleCallDetailsById/:_id", (req, res) => {
  *                 type: string
  *               timeEnroute:
  *                 type: string
- *               responseToScene:
- *                 type: object
- *                 properties:
- *                     type:
- *                       type: string
- *                     changeInResponse:
- *                       type: string
  *     responses:
  *       200:
  *         description: VehicleCallDetails updated successfully
@@ -275,7 +240,6 @@ router.put("/VehicleCallDetails/:_id", (req, res) => {
     } else {
       (result.timeNotified = req.body.timeNotified),
         (result.timeEnroute = req.body.timeEnroute),
-        (result.responseToScene = req.body.responseToScene),
         result
           .save()
           .then((user) => {

@@ -129,7 +129,7 @@ router.post("/PatientCallDetails", async (req, res) => {
         res.status(500).send("Email sending failed!");
       } else {
         console.log("Email send successsfully");
-        res.status(201).send({
+        res.send({
           message: "Your request is successfully submitted!",
           data: savedObject,
         });

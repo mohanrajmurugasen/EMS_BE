@@ -69,7 +69,7 @@ router.post("/Users", async (req, res) => {
         });
       });
     } else {
-      res.status(400).send({
+      res.status(200).send({
         message: "Email already exists!",
       });
     }
@@ -328,20 +328,25 @@ router.put("/UpdateUsersById/:_id", (req, res) => {
       result.email = req.body.email;
       result.userType = req.body.userType;
 
-      result
-        .save()
-        .then((user) => {
-          res.status(200).send({
-            message: "Updated Successfully",
-            data: user,
+      bcrypt.hash(req.body.password, 10, async (errs, hash) => {
+        result.password = hash;
+        let token = jwt.sign(result.userName, process.env.SECRET_KEY);
+
+        result
+          .save()
+          .then((user) => {
+            res.status(200).send({
+              message: "Updated Successfully",
+              data: user,
+            });
+          })
+          .catch((err) => {
+            res.status(400).send({
+              message: "Unable to update data please try again!",
+              data: err,
+            });
           });
-        })
-        .catch((err) => {
-          res.status(400).send({
-            message: "Unable to update data please try again!",
-            data: err,
-          });
-        });
+      });
     }
   });
 });

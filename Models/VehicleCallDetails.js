@@ -40,23 +40,19 @@ const VehicleCallDetailsSchema = mongoose.Schema(
     },
     responseToScene: {
       type: String,
-      changeInResponse: String,
+      required: true,
     },
     responseFromScene: {
       type: String,
-      changeInResponse: String,
+      required: true,
     },
     crewType: {
-      driver: String,
-      attendent: String,
-      assisting: String,
+      type: String,
+      required: true,
     },
     mileage: {
-      out: String,
-      in: String,
-      atScene: String,
-      atDestination: String,
-      total: String,
+      type: String,
+      required: true,
     },
     patientContact: {
       type: String,
