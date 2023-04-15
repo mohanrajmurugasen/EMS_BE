@@ -48,24 +48,18 @@ let mailTransporter = nodemailer.createTransport({
  *                 type: string
  *               moisture:
  *                 type: string
- *               bloodPressure:
+ *               bloodPressure_diastolic:
  *                 type: object
- *                 properties:
- *                     systolic:
- *                       type: string
- *                     diastolic:
- *                       type: string
+ *               bloodPressure_systolic:
+ *                 type: object
  *               respiration:
  *                 type: string
  *               bloodGlucose:
  *                 type: string
- *               oxygenSaturation:
+ *               oxygenSaturation_preOxygen:
  *                 type: object
- *                 properties:
- *                     preOxygen:
- *                       type: string
- *                     postOxygen:
- *                       type: string
+ *               oxygenSaturation1:
+ *                 type: object
  *               email:
  *                 type: string
  *     responses:
@@ -85,10 +79,12 @@ router.post("/VitalSignTreatment", async (req, res) => {
     siteOfTemperatureCheck: req.body.siteOfTemperatureCheck,
     skinColor: req.body.skinColor,
     moisture: req.body.moisture,
-    bloodPressure: req.body.bloodPressure,
+    bloodPressure_diastolic: req.body.bloodPressure_diastolic,
+    bloodPressure_systolic: req.body.bloodPressure_systolic,
     respiration: req.body.respiration,
     bloodGlucose: req.body.bloodGlucose,
-    oxygenSaturation: req.body.oxygenSaturation,
+    oxygenSaturation_preOxygen: req.body.oxygenSaturation_preOxygen,
+    oxygenSaturation_postOxygen: req.body.oxygenSaturation_postOxygen,
   };
 
   let mails = {
@@ -215,13 +211,6 @@ router.get("/VitalSignTreatmentById/:_id", (req, res) => {
  *                 type: string
  *               moisture:
  *                 type: string
- *               bloodPressure:
- *                 type: object
- *                 properties:
- *                     systolic:
- *                       type: string
- *                     diastolic:
- *                       type: string
  *     responses:
  *       200:
  *         description: VitalSignTreatment updated successfully
@@ -240,7 +229,6 @@ router.put("/VitalSignTreatment/:_id", (req, res) => {
     } else {
       (result.dateOfIncident = req.body.dateOfIncident),
         (result.timeOfIncident = req.body.timeOfIncident),
-        (result.bloodPressure = req.body.bloodPressure),
         result
           .save()
           .then((user) => {

@@ -22,11 +22,21 @@ const IncidentCallDetailsSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    incidentLocation: {
-      street: String,
-      city: String,
-      state: String,
-      postalCode: String,
+    incidentLocation_street: {
+      type: String,
+      required: true,
+    },
+    incidentLocation_city: {
+      type: String,
+      required: true,
+    },
+    incidentLocation_state: {
+      type: String,
+      required: true,
+    },
+    incidentLocation_postalCode: {
+      type: String,
+      required: true,
     },
     destinationDeterminant: {
       type: String,
@@ -52,13 +62,30 @@ const IncidentCallDetailsSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    destinationLocation: {
-      street: String,
-      city: String,
-      state: String,
-      postalCode: String,
+    destinationLocation_street: {
+      type: String,
+      required: true,
     },
-    servicePayment: { responsibility: String, number: String },
+    destinationLocation_city: {
+      type: String,
+      required: true,
+    },
+    destinationLocation_state: {
+      type: String,
+      required: true,
+    },
+    destinationLocation_postalCode: {
+      type: String,
+      required: true,
+    },
+    responsibility: {
+      type: String,
+      required: true,
+    },
+    number: {
+      type: String,
+      required: true,
+    },
     EMS: {
       type: String,
       required: true,

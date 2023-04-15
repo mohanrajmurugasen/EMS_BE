@@ -38,9 +38,13 @@ const VitalSignTreatmentsSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    bloodPressure: {
-      systolic: String,
-      diastolic: String,
+    bloodPressure_systolic: {
+      type: String,
+      required: true,
+    },
+    bloodPressure_diastolic: {
+      type: String,
+      required: true,
     },
     respiration: {
       type: String,
@@ -50,9 +54,13 @@ const VitalSignTreatmentsSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    oxygenSaturation: {
-      preOxygen: String,
-      postOxygen: String,
+    oxygenSaturation_preOxygen: {
+      type: String,
+      required: true,
+    },
+    oxygenSaturation_postOxygen: {
+      type: String,
+      required: true,
     },
   },
   {

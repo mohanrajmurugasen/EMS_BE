@@ -36,19 +36,16 @@ let mailTransporter = nodemailer.createTransport({
  *                 type: string
  *               sureName:
  *                 type: string
- *               address:
- *                 type: object
- *                 properties:
- *                     street:
- *                       type: string
- *                     city:
- *                       type: string
- *                     state:
- *                       type: string
- *                     country:
- *                       type: string
- *                     postalCode:
- *                       type: string
+ *               street:
+ *                 type: string
+ *               city:
+ *                 type: string
+ *               state:
+ *                 type: string
+ *               country:
+ *                 type: string
+ *               postalCode:
+ *                 type: string
  *               telePhone:
  *                 type: string
  *               DOB:
@@ -63,22 +60,16 @@ let mailTransporter = nodemailer.createTransport({
  *                 type: string
  *               typeOfInsurance:
  *                 type: string
- *               governmentInsurance:
- *                 type: object
- *                 properties:
- *                     insuranceId:
- *                       type: string
- *                     coverageAmount:
- *                       type: string
- *                     benefits:
- *                       type: string
- *               privateInsurance:
- *                 type: object
- *                 properties:
- *                     insuranceId:
- *                       type: string
- *                     benefits:
- *                       type: string
+ *               governmentInsurance_insuranceId:
+ *                 type: string
+ *               governmentInsurance_coverageAmount:
+ *                 type: string
+ *               governmentInsurance_benefits:
+ *                 type: string
+ *               privateInsurance_insuranceId:
+ *                 type: string
+ *               privateInsurance_benefits:
+ *                 type: string
  *               hospitalChart:
  *                 type: string
  *               comments:
@@ -98,7 +89,11 @@ router.post("/PatientCallDetails", async (req, res) => {
     userId: req.body.userId,
     firstName: req.body.firstName,
     sureName: req.body.sureName,
-    address: req.body.address,
+    street: req.body.street,
+    city: req.body.city,
+    state: req.body.state,
+    country: req.body.country,
+    postalCode: req.body.postalCode,
     telePhone: req.body.telePhone,
     DOB: req.body.DOB,
     age: req.body.age,
@@ -106,8 +101,12 @@ router.post("/PatientCallDetails", async (req, res) => {
     aadhar: req.body.aadhar,
     medicalInsurance: req.body.medicalInsurance,
     typeOfInsurance: req.body.typeOfInsurance,
-    governmentInsurance: req.body.governmentInsurance,
-    privateInsurance: req.body.privateInsurance,
+    governmentInsurance_insuranceId: req.body.governmentInsurance_insuranceId,
+    governmentInsurance_coverageAmount:
+      req.body.governmentInsurance_coverageAmount,
+    governmentInsurance_benefits: req.body.governmentInsurance_benefits,
+    privateInsurance_insuranceId: req.body.privateInsurance_insuranceId,
+    privateInsurance_benefits: req.body.privateInsurance_benefits,
     hospitalChart: req.body.hospitalChart,
     comments: req.body.comments,
   };
@@ -236,19 +235,6 @@ router.get("/PatientCallDetailsById/:_id", (req, res) => {
  *                 type: string
  *               sureName:
  *                 type: string
- *               address:
- *                 type: object
- *                 properties:
- *                     street:
- *                       type: string
- *                     city:
- *                       type: string
- *                     state:
- *                       type: string
- *                     country:
- *                       type: string
- *                     postalCode:
- *                       type: string
  *     responses:
  *       200:
  *         description: PatientCallDetails updated successfully
@@ -267,7 +253,6 @@ router.put("/PatientCallDetails/:_id", (req, res) => {
     } else {
       (result.firstName = req.body.firstName),
         (result.sureName = req.body.sureName),
-        (result.address = req.body.address),
         result
           .save()
           .then((user) => {

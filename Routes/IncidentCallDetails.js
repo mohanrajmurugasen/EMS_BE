@@ -42,17 +42,14 @@ let mailTransporter = nodemailer.createTransport({
  *                 type: string
  *               timeOfIncident:
  *                 type: string
- *               incidentLocation:
- *                 type: object
- *                 properties:
- *                     street:
- *                       type: string
- *                     city:
- *                       type: string
- *                     state:
- *                       type: string
- *                     postalCode:
- *                       type: string
+ *               incidentLocation_street:
+ *                 type: string
+ *               incidentLocation_city:
+ *                 type: string
+ *               incidentLocation_state:
+ *                 type: string
+ *               incidentLocation_postalCode:
+ *                 type: string
  *               destinationDeterminant:
  *                 type: string
  *               graphicLocator:
@@ -65,24 +62,18 @@ let mailTransporter = nodemailer.createTransport({
  *                 type: string
  *               destinationLocationType:
  *                 type: string
- *               destinationLocation:
- *                 type: object
- *                 properties:
- *                     street:
- *                       type: string
- *                     city:
- *                       type: string
- *                     state:
- *                       type: string
- *                     postalCode:
- *                       type: string
- *               servicePayment:
- *                 type: object
- *                 properties:
- *                     responsibility:
- *                       type: string
- *                     number:
- *                       type: string
+ *               destinationLocation_street:
+ *                 type: string
+ *               destinationLocation_city:
+ *                 type: string
+ *               destinationLocation_state:
+ *                 type: string
+ *               destinationLocation_postalCode:
+ *                 type: string
+ *               responsibility:
+ *                 type: string
+ *               number:
+ *                 type: string
  *               EMS:
  *                 type: string
  *               patientDisposition:
@@ -104,15 +95,22 @@ router.post("/IncidentCallDetails", async (req, res) => {
     serviceType: req.body.serviceType,
     dateOfIncident: req.body.dateOfIncident,
     timeOfIncident: req.body.timeOfIncident,
-    incidentLocation: req.body.incidentLocation,
+    incidentLocation_street: req.body.incidentLocation_street,
+    incidentLocation_city: req.body.incidentLocation_city,
+    incidentLocation_state: req.body.incidentLocation_state,
+    incidentLocation_postalCode: req.body.incidentLocation_postalCode,
     destinationDeterminant: req.body.destinationDeterminant,
     graphicLocator: req.body.graphicLocator,
     sceneLocationType: req.body.sceneLocationType,
     destinationFacility: req.body.destinationFacility,
     sceneFacility: req.body.sceneFacility,
     destinationLocationType: req.body.destinationLocationType,
-    destinationLocation: req.body.destinationLocation,
-    servicePayment: req.body.servicePayment,
+    destinationLocation_street: req.body.destinationLocation_street,
+    destinationLocation_city: req.body.destinationLocation_city,
+    destinationLocation_state: req.body.destinationLocation_state,
+    destinationLocation_postalCode: req.body.destinationLocation_postalCode,
+    responsibility: req.body.responsibility,
+    number: req.body.number,
     EMS: req.body.EMS,
     patientDisposition: req.body.patientDisposition,
   };
@@ -293,17 +291,6 @@ router.get("/IncidentCallDetailsById/:_id", (req, res) => {
  *                 type: string
  *               timeOfIncident:
  *                 type: string
- *               incidentLocation:
- *                 type: object
- *                 properties:
- *                     street:
- *                       type: string
- *                     city:
- *                       type: string
- *                     state:
- *                       type: string
- *                     postalCode:
- *                       type: string
  *     responses:
  *       200:
  *         description: IncidentCallDetails updated successfully
@@ -322,7 +309,6 @@ router.put("/IncidentCallDetails/:_id", (req, res) => {
     } else {
       (result.dateOfIncident = req.body.dateOfIncident),
         (result.timeOfIncident = req.body.timeOfIncident),
-        (result.incidentLocation = req.body.incidentLocation),
         result
           .save()
           .then((user) => {
