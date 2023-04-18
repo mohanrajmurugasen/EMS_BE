@@ -73,17 +73,17 @@ let mailTransporter = nodemailer.createTransport({
  *               moisture:
  *                 type: string
  *               bloodPressure_diastolic:
- *                 type: object
+ *                 type: string
  *               bloodPressure_systolic:
- *                 type: object
+ *                 type: string
  *               respiration:
  *                 type: string
  *               bloodGlucose:
  *                 type: string
  *               oxygenSaturation_preOxygen:
- *                 type: object
- *               oxygenSaturation1:
- *                 type: object
+ *                 type: string
+ *               oxygenSaturation_postOxygen:
+ *                 type: string
  *               email:
  *                 type: string
  *     responses:
