@@ -13,7 +13,7 @@ let mailTransporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "mohanraj16119@gmail.com",
-    pass: "zywfxadkscwqyadl",
+    pass: "bfrfwxcbecthxqwu",
   },
 });
 
@@ -154,7 +154,7 @@ let mailTransporter = nodemailer.createTransport({
  *                 type: string
  *               dateModified:
  *                 type: string
- * 
+ *
  *               email1:
  *                 type: string
  *               email2:
@@ -318,20 +318,17 @@ router.get("/CallDetails", (req, res) => {
  *                   type: string
  *                   example: CallDetails not found
  */
-router.get(
-  "/CallDetailsByGraphicLocator/:graphicLocator",
-  (req, res) => {
-    const graphicLocator = req.params.graphicLocator;
-    CallDetails.find({ graphicLocator: graphicLocator })
-      .then((response) => {
-        res.status(200).send({
-          message: "Success",
-          data: response,
-        });
-      })
-      .catch((err) => res.json(err.message));
-  }
-);
+router.get("/CallDetailsByGraphicLocator/:graphicLocator", (req, res) => {
+  const graphicLocator = req.params.graphicLocator;
+  CallDetails.find({ graphicLocator: graphicLocator })
+    .then((response) => {
+      res.status(200).send({
+        message: "Success",
+        data: response,
+      });
+    })
+    .catch((err) => res.json(err.message));
+});
 
 /**
  * @swagger
