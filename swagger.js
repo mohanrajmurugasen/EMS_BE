@@ -9,7 +9,19 @@ const options = {
       description: "EMS API documentation",
     },
   },
-  apis: ["./Routes/*.js", "./Schemas/*.yaml"],
+  apis: [
+    "./Routes/Assessment.js",
+    "./Routes/CallDetails.js",
+    "./Routes/Treatment.js",
+    "./Routes/Users.js",
+    "./Schemas/Assessment.yaml",
+    "./Schemas/CallDetails.yaml",
+    "./Schemas/Treatment.yaml",
+    "./Schemas/Users.yaml",
+  ],
+  // apis: [
+  //   "./Routes/*.js", "./Routes/*.yaml",
+  // ],
 };
 
 const specs = swaggerJsdoc(options);

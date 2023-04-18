@@ -12,6 +12,9 @@ const PatientTreatmentDetails = require("./Routes/PatientTreatmentDetails");
 const PrimaryAssessment = require("./Routes/PrimaryAssessment");
 const VehicleCallDetails = require("./Routes/VehicleCallDetails");
 const VitalSignTreatment = require("./Routes/VitalSignTreatment");
+const CallDetails = require("./Routes/CallDetails");
+const Assessment = require("./Routes/Assessment");
+const Treatment = require("./Routes/Treatment");
 require("dotenv").config();
 const swaggerUi = require("swagger-ui-express");
 const specs = require("./swagger");
@@ -47,6 +50,9 @@ app.use("/api", PrimaryAssessment);
 app.use("/api", VehicleCallDetails);
 app.use("/api", VitalSignTreatment);
 app.use("/api", PatientHistoryAssessment);
+app.use("/api", CallDetails);
+app.use("/api", Assessment);
+app.use("/api", Treatment);
 
 app.listen(PORT, () => {
   console.log(`Server Started successfully on PORT ${PORT}`);

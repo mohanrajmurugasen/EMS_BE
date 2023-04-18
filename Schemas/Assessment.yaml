@@ -1,0 +1,52 @@
+components:
+  schemas:
+    Assessment:
+      type: object
+      required: true
+      properties:
+        userId:
+          type: string
+        dateOfInjury:
+          type: string
+        timeOfInjury:
+          type: string
+        coResponders:
+          type: string
+        treatmentRendered:
+          type: string
+        patientCondition:
+          type: string
+        patientDisplacement:
+          type: string
+        suspectedIntoxication:
+          type: string
+        chiefComplaint:
+          type: string
+        neroResponse:
+          type: string
+        bodySystem:
+          type: string
+        glasGlow:
+          type: string
+        generalAssessment:
+          type: string
+        airway:
+          type: string
+        symptoms:
+          type: string
+        respiration:
+          type: string
+        seizure:
+          type: string
+        toxicExposure:
+          type: string
+        cardiacArrest:
+          type: string
+        chestPain:
+          type: string
+        neonatal:
+          type: string
+        obstetric:
+          type: string
+        trauma:
+          type: string
