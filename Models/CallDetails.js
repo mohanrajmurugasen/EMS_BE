@@ -4,131 +4,131 @@ const CallDetailsSchema = mongoose.Schema(
   {
     userId: {
       type: String,
-      required: true,
+      required: false,
     },
     serviceCode: {
       type: String,
-      required: true,
+      required: false,
     },
     serviceType: {
       type: String,
-      required: true,
+      required: false,
     },
     dateOfIncident: {
       type: String,
-      required: true,
+      required: false,
     },
     timeOfIncident: {
       type: String,
-      required: true,
+      required: false,
     },
     incidentLocation_street: {
       type: String,
-      required: true,
+      required: false,
     },
     incidentLocation_city: {
       type: String,
-      required: true,
+      required: false,
     },
     incidentLocation_state: {
       type: String,
-      required: true,
+      required: false,
     },
     incidentLocation_postalCode: {
       type: String,
-      required: true,
+      required: false,
     },
     incident_destinationDeterminant: {
       type: String,
-      required: true,
+      required: false,
     },
     graphicLocator: {
       type: String,
-      required: true,
+      required: false,
     },
     sceneLocationType: {
       type: String,
-      required: true,
+      required: false,
     },
     destinationFacility: {
       type: String,
-      required: true,
+      required: false,
     },
     sceneFacility: {
       type: String,
-      required: true,
+      required: false,
     },
     destinationLocationType: {
       type: String,
-      required: true,
+      required: false,
     },
     destinationLocation_street: {
       type: String,
-      required: true,
+      required: false,
     },
     destinationLocation_city: {
       type: String,
-      required: true,
+      required: false,
     },
     destinationLocation_state: {
       type: String,
-      required: true,
+      required: false,
     },
     destinationLocation_postalCode: {
       type: String,
-      required: true,
+      required: false,
     },
     responsibility: {
       type: String,
-      required: true,
+      required: false,
     },
     number: {
       type: String,
-      required: true,
+      required: false,
     },
     EMS: {
       type: String,
-      required: true,
+      required: false,
     },
     patientDisposition: {
       type: String,
-      required: true,
+      required: false,
     },
     firstName: {
       type: String,
-      required: true,
+      required: false,
     },
     sureName: {
       type: String,
-      required: true,
+      required: false,
     },
     street: {
       type: String,
-      required: true,
+      required: false,
     },
     city: {
       type: String,
-      required: true,
+      required: false,
     },
     state: {
       type: String,
-      required: true,
+      required: false,
     },
     country: {
       type: String,
-      required: true,
+      required: false,
     },
     postalCode: {
       type: String,
-      required: true,
+      required: false,
     },
     telePhone: {
       type: String,
-      required: true,
+      required: false,
     },
     DOB: {
       type: String,
-      required: true,
+      required: false,
     },
     age: {
       type: String,
@@ -144,7 +144,7 @@ const CallDetailsSchema = mongoose.Schema(
     },
     medicalInsurance: {
       type: String,
-      required: true,
+      required: false,
     },
     typeOfInsurance: {
       type: String,
@@ -172,68 +172,71 @@ const CallDetailsSchema = mongoose.Schema(
     },
     hospitalChart: {
       type: String,
-      required: true,
+      required: false,
+    },
+    hospitalName: {
+      type: String,
+      required: false,
     },
     comments: {
       type: String,
-      required: true,
+      required: false,
     },
-
     timeNotified: {
       type: String,
-      required: true,
+      required: false,
     },
     timeEnroute: {
       type: String,
-      required: true,
+      required: false,
     },
     timeAtScene: {
       type: String,
-      required: true,
+      required: false,
     },
     crewPatient: {
       type: String,
-      required: true,
+      required: false,
     },
     timeOutScene: {
       type: String,
-      required: true,
+      required: false,
     },
     timeAtDestination: {
       type: String,
-      required: true,
+      required: false,
     },
     available: {
       type: String,
-      required: true,
+      required: false,
     },
     backArea: {
       type: String,
-      required: true,
+      required: false,
     },
     responseToScene: {
       type: String,
-      required: true,
+      required: false,
     },
     responseFromScene: {
       type: String,
-      required: true,
+      required: false,
     },
     crewType: {
       type: String,
-      required: true,
+      required: false,
     },
     mileage: {
       type: String,
-      required: true,
+      required: false,
     },
     patientContact: {
       type: String,
-      required: true,
+      required: false,
     },
     vehicle_destinationDeterminant: {
       type: String,
-      required: true,
+      required: false,
     },
     startDate: {
       type: String,
@@ -247,9 +250,197 @@ const CallDetailsSchema = mongoose.Schema(
       type: String,
       required: false,
     },
+    dateOfInjury: {
+      type: String,
+      required: false,
+    },
+    timeOfInjury: {
+      type: String,
+      required: false,
+    },
+    coResponders: {
+      type: String,
+      required: false,
+    },
+    treatmentRendered: {
+      type: String,
+      required: false,
+    },
+    patientCondition: {
+      type: String,
+      required: false,
+    },
+    patientDisplacement: {
+      type: String,
+      required: false,
+    },
+    suspectedIntoxication: {
+      type: String,
+      required: false,
+    },
+    chiefComplaint: {
+      type: String,
+      required: false,
+    },
+    neroResponse: {
+      type: String,
+      required: false,
+    },
+    bodySystem: {
+      type: String,
+      required: false,
+    },
+    glasGlow: {
+      type: String,
+      required: false,
+    },
+    generalAssessment: {
+      type: String,
+      required: false,
+    },
+    airway: {
+      type: String,
+      required: false,
+    },
+    symptoms: {
+      type: String,
+      required: false,
+    },
+    respiration: {
+      type: String,
+      required: false,
+    },
+    seizure: {
+      type: String,
+      required: false,
+    },
+    toxicExposure: {
+      type: String,
+      required: false,
+    },
+    cardiacArrest: {
+      type: String,
+      required: false,
+    },
+    chestPain: {
+      type: String,
+      required: false,
+    },
+    neonatal: {
+      type: String,
+      required: false,
+    },
+    obstetric: {
+      type: String,
+      required: false,
+    },
+    trauma: {
+      type: String,
+      required: false,
+    },
+    procedureStartTime: {
+      type: String,
+      required: false,
+    },
+    procedureType: {
+      type: String,
+      required: false,
+    },
+    procedureEndTime: {
+      type: String,
+      required: false,
+    },
+    deviceMethod: {
+      type: String,
+      required: false,
+    },
+    technicianID: {
+      type: String,
+      required: false,
+    },
+    deviceSize: {
+      type: String,
+      required: false,
+    },
+    outcome: {
+      type: String,
+      required: false,
+    },
+    successfull: {
+      type: String,
+      required: false,
+    },
+    treatment: {
+      type: String,
+      required: false,
+    },
+    totalTime: {
+      type: String,
+      required: false,
+    },
+    treatmentType: {
+      type: String,
+      required: false,
+    },
+    administrativeRoute: {
+      type: String,
+      required: false,
+    },
+    assessmentTime: {
+      type: String,
+      required: false,
+    },
+    consciousnessLevel: {
+      type: String,
+      required: false,
+    },
+    pulseRate: {
+      type: String,
+      required: false,
+    },
+    siteOfPulseCheck: {
+      type: String,
+      required: false,
+    },
+    temperature: {
+      type: String,
+      required: false,
+    },
+    siteOfTemperatureCheck: {
+      type: String,
+      required: false,
+    },
+    skinColor: {
+      type: String,
+      required: false,
+    },
+    skinCondition: {
+      type: String,
+      required: false,
+    },
+    moisture: {
+      type: String,
+      required: false,
+    },
+    bloodPressure: {
+      type: String,
+      required: false,
+    },
+    treatment_respiration: {
+      type: String,
+      required: false,
+    },
+    bloodGlucose: {
+      type: String,
+      required: false,
+    },
+    oxygenSaturation: {
+      type: String,
+      required: false,
+    },
   },
   {
-    timestamps: true,
+    timestamps: false,
   }
 );
 

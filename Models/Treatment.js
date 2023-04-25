@@ -82,15 +82,15 @@ const TreatmentsSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    skinCondition: {
+      type: String,
+      required: true,
+    },
     moisture: {
       type: String,
       required: true,
     },
-    bloodPressure_systolic: {
-      type: String,
-      required: true,
-    },
-    bloodPressure_diastolic: {
+    bloodPressure: {
       type: String,
       required: true,
     },
@@ -102,11 +102,7 @@ const TreatmentsSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    oxygenSaturation_preOxygen: {
-      type: String,
-      required: true,
-    },
-    oxygenSaturation_postOxygen: {
+    oxygenSaturation: {
       type: String,
       required: true,
     },

@@ -70,6 +70,8 @@ let mailTransporter = nodemailer.createTransport({
  *                 type: string
  *               skinColor:
  *                 type: string
+ *               skinCondition:
+ *                 type: string
  *               moisture:
  *                 type: string
  *               bloodPressure_diastolic:
@@ -114,13 +116,12 @@ router.post("/Treatment", async (req, res) => {
     temperature: req.body.temperature,
     siteOfTemperatureCheck: req.body.siteOfTemperatureCheck,
     skinColor: req.body.skinColor,
+    skinCondition: req.body.skinCondition,
     moisture: req.body.moisture,
-    bloodPressure_diastolic: req.body.bloodPressure_diastolic,
-    bloodPressure_systolic: req.body.bloodPressure_systolic,
+    bloodPressure: req.body.bloodPressure,
     respiration: req.body.respiration,
     bloodGlucose: req.body.bloodGlucose,
-    oxygenSaturation_preOxygen: req.body.oxygenSaturation_preOxygen,
-    oxygenSaturation_postOxygen: req.body.oxygenSaturation_postOxygen,
+    oxygenSaturation: req.body.oxygenSaturation,
   };
 
   let mails = {

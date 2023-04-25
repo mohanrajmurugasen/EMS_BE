@@ -118,6 +118,8 @@ let mailTransporter = nodemailer.createTransport({
  *                 type: string
  *               hospitalChart:
  *                 type: string
+ *               hospitalName:
+ *                 type: string
  *               comments:
  *                 type: string
  *               timeNotified:
@@ -154,7 +156,100 @@ let mailTransporter = nodemailer.createTransport({
  *                 type: string
  *               dateModified:
  *                 type: string
- *
+ *               dateOfInjury:
+ *                 type: string
+ *               timeOfInjury:
+ *                 type: string
+ *               coResponders:
+ *                 type: string
+ *               treatmentRendered:
+ *                 type: string
+ *               patientCondition:
+ *                 type: string
+ *               patientDisplacement:
+ *                 type: string
+ *               suspectedIntoxication:
+ *                 type: string
+ *               chiefComplaint:
+ *                 type: string
+ *               neroResponse:
+ *                 type: string
+ *               bodySystem:
+ *                 type: string
+ *               glasGlow:
+ *                 type: string
+ *               generalAssessment:
+ *                 type: string
+ *               airway:
+ *                 type: string
+ *               symptoms:
+ *                 type: string
+ *               respiration:
+ *                 type: string
+ *               seizure:
+ *                 type: string
+ *               toxicExposure:
+ *                 type: string
+ *               cardiacArrest:
+ *                 type: string
+ *               chestPain:
+ *                 type: string
+ *               neonatal:
+ *                 type: string
+ *               obstetric:
+ *                 type: string
+ *               trauma:
+ *                 type: string
+ *               procedureStartTime:
+ *                 type: string
+ *               procedureType:
+ *                 type: string
+ *               procedureEndTime:
+ *                 type: string
+ *               deviceMethod:
+ *                 type: string
+ *               technicianID:
+ *                 type: string
+ *               deviceSize:
+ *                 type: string
+ *               outcome:
+ *                 type: string
+ *               successfull:
+ *                 type: string
+ *               treatment:
+ *                 type: string
+ *               totalTime:
+ *                 type: string
+ *               treatmentType:
+ *                 type: string
+ *               administrativeRoute:
+ *                 type: string
+ *               assessmentTime:
+ *                 type: string
+ *               consciousnessLevel:
+ *                 type: string
+ *               pulseRate:
+ *                 type: string
+ *               siteOfPulseCheck:
+ *                 type: string
+ *               temperature:
+ *                 type: string
+ *               siteOfTemperatureCheck:
+ *                 type: string
+ *               skinColor:
+ *                 type: string
+ *               skinCondition:
+ *                 type: string
+ *               moisture:
+ *                 type: string
+ *               bloodPressure:
+ *                 type: string
+ *               treatment_respiration:
+ *                 type: string
+ *               bloodGlucose:
+ *                 type: string
+ *               oxygenSaturation:
+ *                 type: string
  *               email1:
  *                 type: string
  *               email2:
@@ -166,8 +261,7 @@ let mailTransporter = nodemailer.createTransport({
  *         description: Invalid request body
  */
 router.post("/CallDetails", async (req, res) => {
-  const details = {
-    userId: req.body.userId,
+  const calls = {
     serviceCode: req.body.serviceCode,
     serviceType: req.body.serviceType,
     dateOfIncident: req.body.dateOfIncident,
@@ -211,6 +305,7 @@ router.post("/CallDetails", async (req, res) => {
     privateInsurance_insuranceId: req.body.privateInsurance_insuranceId,
     privateInsurance_benefits: req.body.privateInsurance_benefits,
     hospitalChart: req.body.hospitalChart,
+    hospitalName: req.body.hospitalName,
     comments: req.body.comments,
     timeNotified: req.body.timeNotified,
     timeEnroute: req.body.timeEnroute,
@@ -229,6 +324,63 @@ router.post("/CallDetails", async (req, res) => {
     startDate: req.body.startDate,
     endDate: req.body.endDate,
     dateModified: req.body.dateModified,
+  }
+  const assess = {
+    dateOfInjury: req.body.dateOfInjury,
+    timeOfInjury: req.body.timeOfInjury,
+    coResponders: req.body.coResponders,
+    treatmentRendered: req.body.treatmentRendered,
+    patientCondition: req.body.patientCondition,
+    patientDisplacement: req.body.patientDisplacement,
+    suspectedIntoxication: req.body.suspectedIntoxication,
+    chiefComplaint: req.body.chiefComplaint,
+    neroResponse: req.body.neroResponse,
+    bodySystem: req.body.bodySystem,
+    glasGlow: req.body.glasGlow,
+    generalAssessment: req.body.generalAssessment,
+    airway: req.body.airway,
+    symptoms: req.body.symptoms,
+    respiration: req.body.respiration,
+    seizure: req.body.seizure,
+    toxicExposure: req.body.toxicExposure,
+    cardiacArrest: req.body.cardiacArrest,
+    chestPain: req.body.chestPain,
+    neonatal: req.body.neonatal,
+    obstetric: req.body.obstetric,
+    trauma: req.body.trauma,
+  }
+  const tret = {
+    procedureStartTime: req.body.procedureStartTime,
+    procedureType: req.body.procedureType,
+    procedureEndTime: req.body.procedureEndTime,
+    deviceMethod: req.body.deviceMethod,
+    technicianID: req.body.technicianID,
+    deviceSize: req.body.deviceSize,
+    outcome: req.body.outcome,
+    successfull: req.body.successfull,
+    treatment: req.body.treatment,
+    totalTime: req.body.totalTime,
+    treatmentType: req.body.treatmentType,
+    administrativeRoute: req.body.administrativeRoute,
+    assessmentTime: req.body.assessmentTime,
+    consciousnessLevel: req.body.consciousnessLevel,
+    pulseRate: req.body.pulseRate,
+    siteOfPulseCheck: req.body.siteOfPulseCheck,
+    temperature: req.body.temperature,
+    siteOfTemperatureCheck: req.body.siteOfTemperatureCheck,
+    skinColor: req.body.skinColor,
+    skinCondition: req.body.skinCondition,
+    moisture: req.body.moisture,
+    bloodPressure: req.body.bloodPressure,
+    treatment_respiration: req.body.treatment_respiration,
+    bloodGlucose: req.body.bloodGlucose,
+    oxygenSaturation: req.body.oxygenSaturation,
+  }
+  const details = {
+    userId: req.body.userId,
+    ...calls,
+    ...assess,
+    ...tret,
   };
 
   let mails = {
@@ -238,22 +390,33 @@ router.post("/CallDetails", async (req, res) => {
     text: `Text Message`,
   };
 
+  let mails2 = {
+    from: "mohanraj16119@gmail.com",
+    to: `${req.body.email1}`,
+    subject: `Subject`,
+    text: `Text Message`,
+  };
+
   const newDetails = new CallDetails(details);
   newDetails.save((err, savedObject) => {
     if (err) throw err;
 
-    mailTransporter.sendMail(mails, (err) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Email sending failed!");
-      } else {
-        console.log("Email send successsfully");
-        res.status(201).send({
-          message: "Your request is successfully submitted!",
-          data: savedObject,
-        });
-      }
+    res.status(201).send({
+      message: "Your request is successfully submitted!",
+      data: savedObject,
     });
+    // mailTransporter.sendMail(mails, (err) => {
+    //   if (err) {
+    //     console.log(err);
+    //     res.status(500).send("Email sending failed!");
+    //   }
+    // });
+    // mailTransporter.sendMail(mails2, (err) => {
+    //   if (err) {
+    //     console.log(err);
+    //     res.status(500).send("Email sending failed!");
+    //   }
+    // });
   });
 });
 
