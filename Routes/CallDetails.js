@@ -12,8 +12,8 @@ const secretKey = process.env.SECRET_KEY;
 let mailTransporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "mohanraj16119@gmail.com",
-    pass: "qsnyieobtzagnfdg",
+    user: "sampleforcompany4@gmail.com",
+    pass: "lhbjytsrhecpqbeg",
   },
 });
 
@@ -384,7 +384,7 @@ router.post("/CallDetails", async (req, res) => {
   };
 
   let mails1 = {
-    from: "mohanraj16119@gmail.com",
+    from: "sampleforcompany4@gmail.com",
     to: `${req.body.email1}`,
     subject: `Form Submission`,
     text: `Text Message`,
@@ -615,7 +615,7 @@ router.post("/CallDetails", async (req, res) => {
   };
 
   let mails2 = {
-    from: "mohanraj16119@gmail.com",
+    from: "sampleforcompany4@gmail.com",
     to: `${req.body.email2}`,
     subject: `Form Submission`,
     text: `Text Message`,
