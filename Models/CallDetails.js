@@ -250,6 +250,7 @@ const CallDetailsSchema = mongoose.Schema(
       type: String,
       required: false,
     },
+    // assess
     dateOfInjury: {
       type: String,
       required: false,
@@ -338,6 +339,7 @@ const CallDetailsSchema = mongoose.Schema(
       type: String,
       required: false,
     },
+    // treatment
     procedureStartTime: {
       type: String,
       required: false,
@@ -444,9 +446,6 @@ const CallDetailsSchema = mongoose.Schema(
   }
 );
 
-const CallDetailsModel = mongoose.model(
-  "CallDetail",
-  CallDetailsSchema
-);
+const CallDetailsModel = mongoose.model("CallDetail", CallDetailsSchema);
 
 module.exports = CallDetailsModel;

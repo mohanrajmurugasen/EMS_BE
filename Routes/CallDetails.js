@@ -13,7 +13,7 @@ let mailTransporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "mohanraj16119@gmail.com",
-    pass: "bfrfwxcbecthxqwu",
+    pass: "qsnyieobtzagnfdg",
   },
 });
 
@@ -324,7 +324,7 @@ router.post("/CallDetails", async (req, res) => {
     startDate: req.body.startDate,
     endDate: req.body.endDate,
     dateModified: req.body.dateModified,
-  }
+  };
   const assess = {
     dateOfInjury: req.body.dateOfInjury,
     timeOfInjury: req.body.timeOfInjury,
@@ -348,7 +348,7 @@ router.post("/CallDetails", async (req, res) => {
     neonatal: req.body.neonatal,
     obstetric: req.body.obstetric,
     trauma: req.body.trauma,
-  }
+  };
   const tret = {
     procedureStartTime: req.body.procedureStartTime,
     procedureType: req.body.procedureType,
@@ -375,7 +375,7 @@ router.post("/CallDetails", async (req, res) => {
     treatment_respiration: req.body.treatment_respiration,
     bloodGlucose: req.body.bloodGlucose,
     oxygenSaturation: req.body.oxygenSaturation,
-  }
+  };
   const details = {
     userId: req.body.userId,
     ...calls,
@@ -383,18 +383,366 @@ router.post("/CallDetails", async (req, res) => {
     ...tret,
   };
 
-  let mails = {
+  let mails1 = {
     from: "mohanraj16119@gmail.com",
-    to: `${req.body.email2}, ${req.body.email1}`,
-    subject: `Subject`,
+    to: `${req.body.email1}`,
+    subject: `Form Submission`,
     text: `Text Message`,
+    html: `
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    </style>
+    </head>
+    <body>
+
+    <h2>Requirement Form Submission.</h2>
+
+    <h5>Call Details</h5>
+    <table style="width:100%">
+      <tr>
+        <td style="width:50%;padding: 5px"><b>ServiceCode:</b>  ${calls.serviceCode}</td>
+        <td style="width:50%;padding: 5px"><b>ServiceType:</b>  ${calls.serviceType}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>DateOfIncident:</b>  ${calls.dateOfIncident}</td>
+        <td style="width:50%;padding: 5px"><b>TimeOfIncident:</b>  ${calls.timeOfIncident}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>Street:</b>  ${calls.incidentLocation_street}</td>
+        <td style="width:50%;padding: 5px"><b>City:</b>  ${calls.incidentLocation_city}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>State:</b>  ${calls.incidentLocation_state}</td>
+        <td style="width:50%;padding: 5px"><b>PostalCode:</b>  ${calls.incidentLocation_postalCode}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>DestinationDeterminant:</b>  ${calls.incident_destinationDeterminant}</td>
+        <td style="width:50%;padding: 5px"><b>GraphicLocator:</b>  ${calls.graphicLocator}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>SceneLocationType:</b>  ${calls.sceneLocationType}</td>
+        <td style="width:50%;padding: 5px"><b>DestinationFacility:</b>  ${calls.destinationFacility}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>SceneFacility:</b>  ${calls.sceneFacility}</td>
+        <td style="width:50%;padding: 5px"><b>DestinationLocationType:</b>  ${calls.destinationLocationType}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>Responsibility:</b>  ${calls.responsibility}</td>
+        <td style="width:50%;padding: 5px"><b>ServicePaymentNumber:</b>  ${calls.number}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>EMS:</b>  ${calls.EMS}</td>
+        <td style="width:50%;padding: 5px"><b>PatientDisposition:</b>  ${calls.patientDisposition}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>FirstName:</b>  ${calls.firstName}</td>
+        <td style="width:50%;padding: 5px"><b>SureName:</b>  ${calls.sureName}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>TelePhone:</b>  ${calls.telePhone}</td>
+        <td style="width:50%;padding: 5px"><b>DOB:</b>  ${calls.DOB}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>Age:</b>  ${calls.age}</td>
+        <td style="width:50%;padding: 5px"><b>Gender:</b>  ${calls.gender}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>aadhar:</b>  ${calls.aadhar}</td>
+        <td style="width:50%;padding: 5px"><b>medicalInsurance:</b>  ${calls.medicalInsurance}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>typeOfInsurance:</b>  ${calls.typeOfInsurance}</td>
+        <td style="width:50%;padding: 5px"><b>governmentInsurance_insuranceId:</b>  ${calls.governmentInsurance_insuranceId}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>governmentInsurance_coverageAmount:</b>  ${calls.governmentInsurance_coverageAmount}</td>
+        <td style="width:50%;padding: 5px"><b>governmentInsurance_benefits:</b>  ${calls.governmentInsurance_benefits}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>privateInsurance_insuranceId:</b>  ${calls.privateInsurance_insuranceId}</td>
+        <td style="width:50%;padding: 5px"><b>privateInsurance_benefits:</b>  ${calls.privateInsurance_benefits}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>hospitalChart:</b>  ${calls.hospitalChart}</td>
+        <td style="width:50%;padding: 5px"><b>hospitalName:</b>  ${calls.hospitalName}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>comments:</b>  ${calls.comments}</td>
+        <td style="width:50%;padding: 5px"><b>timeNotified:</b>  ${calls.timeNotified}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>comments:</b>  ${calls.comments}</td>
+        <td style="width:50%;padding: 5px"><b>timeNotified:</b>  ${calls.timeNotified}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>timeEnroute:</b>  ${calls.timeEnroute}</td>
+        <td style="width:50%;padding: 5px"><b>timeAtScene:</b>  ${calls.timeAtScene}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>crewPatient:</b>  ${calls.crewPatient}</td>
+        <td style="width:50%;padding: 5px"><b>timeOutScene:</b>  ${calls.timeOutScene}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>timeAtDestination:</b>  ${calls.timeAtDestination}</td>
+        <td style="width:50%;padding: 5px"><b>available:</b>  ${calls.available}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>backArea:</b>  ${calls.backArea}</td>
+        <td style="width:50%;padding: 5px"><b>responseToScene:</b>  ${calls.responseToScene}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>responseFromScene:</b>  ${calls.responseFromScene}</td>
+        <td style="width:50%;padding: 5px"><b>crewType:</b>  ${calls.crewType}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>mileage:</b>  ${calls.mileage}</td>
+        <td style="width:50%;padding: 5px"><b>patientContact:</b>  ${calls.patientContact}</td>
+      </tr>
+    </table>
+    <br>
+    <h5>Assessments Details</h5>
+    <table style="width:100%">
+      <tr>
+        <td style="width:50%;padding: 5px"><b>dateOfInjury:</b>  ${assess.dateOfInjury}</td>
+        <td style="width:50%;padding: 5px"><b>timeOfInjury:</b>  ${assess.timeOfInjury}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>coResponders:</b>  ${assess.coResponders}</td>
+        <td style="width:50%;padding: 5px"><b>treatmentRendered:</b>  ${assess.treatmentRendered}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>patientCondition:</b>  ${assess.patientCondition}</td>
+        <td style="width:50%;padding: 5px"><b>patientDisplacement:</b>  ${assess.patientDisplacement}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>suspectedIntoxication:</b>  ${assess.suspectedIntoxication}</td>
+        <td style="width:50%;padding: 5px"><b>chiefComplaint:</b>  ${assess.chiefComplaint}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>neroResponse:</b>  ${assess.neroResponse}</td>
+        <td style="width:50%;padding: 5px"><b>bodySystem:</b>  ${assess.bodySystem}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>glasGlow:</b>  ${assess.glasGlow}</td>
+        <td style="width:50%;padding: 5px"><b>generalAssessment:</b>  ${assess.generalAssessment}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>airway:</b>  ${assess.airway}</td>
+        <td style="width:50%;padding: 5px"><b>symptoms:</b>  ${assess.symptoms}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>respiration:</b>  ${assess.respiration}</td>
+        <td style="width:50%;padding: 5px"><b>seizure:</b>  ${assess.seizure}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>toxicExposure:</b>  ${assess.toxicExposure}</td>
+        <td style="width:50%;padding: 5px"><b>cardiacArrest:</b>  ${assess.cardiacArrest}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>chestPain:</b>  ${assess.chestPain}</td>
+        <td style="width:50%;padding: 5px"><b>neonatal:</b>  ${assess.neonatal}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>obstetric:</b>  ${assess.obstetric}</td>
+        <td style="width:50%;padding: 5px"><b>trauma:</b>  ${assess.trauma}</td>
+      </tr>
+    </table>
+    <br>
+    <h5>Treatments</h5>
+    <table style="width:100%">
+      <tr>
+        <td style="width:50%;padding: 5px"><b>procedureStartTime:</b>  ${tret.procedureStartTime}</td>
+        <td style="width:50%;padding: 5px"><b>procedureType:</b>  ${tret.procedureType}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>procedureEndTime:</b>  ${tret.procedureEndTime}</td>
+        <td style="width:50%;padding: 5px"><b>deviceMethod:</b>  ${tret.deviceMethod}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>technicianID:</b>  ${tret.technicianID}</td>
+        <td style="width:50%;padding: 5px"><b>deviceSize:</b>  ${tret.deviceSize}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>outcome:</b>  ${tret.outcome}</td>
+        <td style="width:50%;padding: 5px"><b>successfull:</b>  ${tret.successfull}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>treatment:</b>  ${tret.treatment}</td>
+        <td style="width:50%;padding: 5px"><b>totalTime:</b>  ${tret.totalTime}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>treatmentType:</b>  ${tret.treatmentType}</td>
+        <td style="width:50%;padding: 5px"><b>administrativeRoute:</b>  ${tret.administrativeRoute}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>assessmentTime:</b>  ${tret.assessmentTime}</td>
+        <td style="width:50%;padding: 5px"><b>consciousnessLevel:</b>  ${tret.consciousnessLevel}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>pulseRate:</b>  ${tret.pulseRate}</td>
+        <td style="width:50%;padding: 5px"><b>siteOfPulseCheck:</b>  ${tret.siteOfPulseCheck}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>temperature:</b>  ${tret.temperature}</td>
+        <td style="width:50%;padding: 5px"><b>siteOfTemperatureCheck:</b>  ${tret.siteOfTemperatureCheck}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>skinColor:</b>  ${tret.skinColor}</td>
+        <td style="width:50%;padding: 5px"><b>skinCondition:</b>  ${tret.skinCondition}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>moisture:</b>  ${tret.moisture}</td>
+        <td style="width:50%;padding: 5px"><b>bloodPressure:</b>  ${tret.bloodPressure}</td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding: 5px"><b>bloodGlucose:</b>  ${tret.bloodGlucose}</td>
+        <td style="width:50%;padding: 5px"><b>oxygenSaturation:</b>  ${tret.oxygenSaturation}</td>
+      </tr>
+    </table>
+
+    <p>Thank you,</p>
+
+    </body>
+  </html>
+              `,
   };
 
   let mails2 = {
     from: "mohanraj16119@gmail.com",
-    to: `${req.body.email1}`,
-    subject: `Subject`,
+    to: `${req.body.email2}`,
+    subject: `Form Submission`,
     text: `Text Message`,
+    html: `
+      <!DOCTYPE html>
+      <html>
+      <head>
+      <style>
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      </style>
+      </head>
+      <body>
+  
+      <h2>Requirement Form Submission.</h2>
+  
+      <h5>Call Details</h5>
+      <table style="width:100%">
+        <tr>
+          <td style="width:50%;padding: 5px"><b>ServiceCode:</b>  ${calls.serviceCode}</td>
+          <td style="width:50%;padding: 5px"><b>ServiceType:</b>  ${calls.serviceType}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>DateOfIncident:</b>  ${calls.dateOfIncident}</td>
+          <td style="width:50%;padding: 5px"><b>TimeOfIncident:</b>  ${calls.timeOfIncident}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>Street:</b>  ${calls.incidentLocation_street}</td>
+          <td style="width:50%;padding: 5px"><b>City:</b>  ${calls.incidentLocation_city}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>State:</b>  ${calls.incidentLocation_state}</td>
+          <td style="width:50%;padding: 5px"><b>PostalCode:</b>  ${calls.incidentLocation_postalCode}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>DestinationDeterminant:</b>  ${calls.incident_destinationDeterminant}</td>
+          <td style="width:50%;padding: 5px"><b>GraphicLocator:</b>  ${calls.graphicLocator}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>SceneLocationType:</b>  ${calls.sceneLocationType}</td>
+          <td style="width:50%;padding: 5px"><b>DestinationFacility:</b>  ${calls.destinationFacility}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>SceneFacility:</b>  ${calls.sceneFacility}</td>
+          <td style="width:50%;padding: 5px"><b>DestinationLocationType:</b>  ${calls.destinationLocationType}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>Responsibility:</b>  ${calls.responsibility}</td>
+          <td style="width:50%;padding: 5px"><b>ServicePaymentNumber:</b>  ${calls.number}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>EMS:</b>  ${calls.EMS}</td>
+          <td style="width:50%;padding: 5px"><b>PatientDisposition:</b>  ${calls.patientDisposition}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>FirstName:</b>  ${calls.firstName}</td>
+          <td style="width:50%;padding: 5px"><b>SureName:</b>  ${calls.sureName}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>TelePhone:</b>  ${calls.telePhone}</td>
+          <td style="width:50%;padding: 5px"><b>DOB:</b>  ${calls.DOB}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>Age:</b>  ${calls.age}</td>
+          <td style="width:50%;padding: 5px"><b>Gender:</b>  ${calls.gender}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>aadhar:</b>  ${calls.aadhar}</td>
+          <td style="width:50%;padding: 5px"><b>medicalInsurance:</b>  ${calls.medicalInsurance}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>typeOfInsurance:</b>  ${calls.typeOfInsurance}</td>
+          <td style="width:50%;padding: 5px"><b>governmentInsurance_insuranceId:</b>  ${calls.governmentInsurance_insuranceId}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>governmentInsurance_coverageAmount:</b>  ${calls.governmentInsurance_coverageAmount}</td>
+          <td style="width:50%;padding: 5px"><b>governmentInsurance_benefits:</b>  ${calls.governmentInsurance_benefits}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>privateInsurance_insuranceId:</b>  ${calls.privateInsurance_insuranceId}</td>
+          <td style="width:50%;padding: 5px"><b>privateInsurance_benefits:</b>  ${calls.privateInsurance_benefits}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>hospitalChart:</b>  ${calls.hospitalChart}</td>
+          <td style="width:50%;padding: 5px"><b>hospitalName:</b>  ${calls.hospitalName}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>comments:</b>  ${calls.comments}</td>
+          <td style="width:50%;padding: 5px"><b>timeNotified:</b>  ${calls.timeNotified}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>comments:</b>  ${calls.comments}</td>
+          <td style="width:50%;padding: 5px"><b>timeNotified:</b>  ${calls.timeNotified}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>timeEnroute:</b>  ${calls.timeEnroute}</td>
+          <td style="width:50%;padding: 5px"><b>timeAtScene:</b>  ${calls.timeAtScene}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>crewPatient:</b>  ${calls.crewPatient}</td>
+          <td style="width:50%;padding: 5px"><b>timeOutScene:</b>  ${calls.timeOutScene}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>timeAtDestination:</b>  ${calls.timeAtDestination}</td>
+          <td style="width:50%;padding: 5px"><b>available:</b>  ${calls.available}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>backArea:</b>  ${calls.backArea}</td>
+          <td style="width:50%;padding: 5px"><b>responseToScene:</b>  ${calls.responseToScene}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>responseFromScene:</b>  ${calls.responseFromScene}</td>
+          <td style="width:50%;padding: 5px"><b>crewType:</b>  ${calls.crewType}</td>
+        </tr>
+        <tr>
+          <td style="width:50%;padding: 5px"><b>mileage:</b>  ${calls.mileage}</td>
+          <td style="width:50%;padding: 5px"><b>patientContact:</b>  ${calls.patientContact}</td>
+        </tr>
+      </table>
+  
+      <p>Thank you,</p>
+  
+      </body>
+    </html>
+                `,
   };
 
   const newDetails = new CallDetails(details);
@@ -405,18 +753,22 @@ router.post("/CallDetails", async (req, res) => {
       message: "Your request is successfully submitted!",
       data: savedObject,
     });
-    // mailTransporter.sendMail(mails, (err) => {
-    //   if (err) {
-    //     console.log(err);
-    //     res.status(500).send("Email sending failed!");
-    //   }
-    // });
-    // mailTransporter.sendMail(mails2, (err) => {
-    //   if (err) {
-    //     console.log(err);
-    //     res.status(500).send("Email sending failed!");
-    //   }
-    // });
+    mailTransporter.sendMail(mails1, (err, info) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Email sending failed!");
+      } else {
+        console.log(info);
+      }
+    });
+    mailTransporter.sendMail(mails2, (err, info) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Email sending failed!");
+      } else {
+        console.log(info);
+      }
+    });
   });
 });
 
