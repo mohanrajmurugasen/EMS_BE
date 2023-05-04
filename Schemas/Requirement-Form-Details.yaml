@@ -1,6 +1,6 @@
 components:
   schemas:
-    CallDetails:
+    RequirementFormDetails:
       type: object
       required: true
       properties:
@@ -172,3 +172,105 @@ components:
           type: string
         dateModified:
           type: string
+        dateOfInjury:
+          type: string
+        timeOfInjury:
+          type: string
+        coResponders:
+          type: string
+        treatmentRendered:
+          type: string
+        patientCondition:
+          type: string
+        patientDisplacement:
+          type: string
+        suspectedIntoxication:
+          type: string
+        chiefComplaint:
+          type: string
+        neroResponse:
+          type: string
+        bodySystem:
+          type: string
+        glasGlow:
+          type: string
+        generalAssessment:
+          type: string
+        airway:
+          type: string
+        symptoms:
+          type: string
+        respiration:
+          type: string
+        seizure:
+          type: string
+        toxicExposure:
+          type: string
+        cardiacArrest:
+          type: string
+        chestPain:
+          type: string
+        neonatal:
+          type: string
+        obstetric:
+          type: string
+        trauma:
+          type: string
+        procedureStartTime:
+          type: string
+        procedureType:
+          type: string
+        procedureEndTime:
+          type: string
+        deviceMethod:
+          type: string
+        technicianID:
+          type: string
+        deviceSize:
+          type: string
+        outcome:
+          type: string
+        successfull:
+          type: string
+        treatment:
+          type: string
+        totalTime:
+          type: string
+        treatmentType:
+          type: string
+        administrativeRoute:
+          type: string
+        assessmentTime:
+          type: string
+        consciousnessLevel:
+          type: string
+        pulseRate:
+          type: string
+        siteOfPulseCheck:
+          type: string
+        temperature:
+          type: string
+        siteOfTemperatureCheck:
+          type: string
+        skinColor:
+          type: string
+        moisture:
+          type: string
+        bloodPressure:
+          type: object
+          properties:
+            systolic:
+              type: string
+            diastolic:
+              type: string
+        treatment_respiration:
+          type: string
+        bloodGlucose:
+          type: string
+        oxygenSaturation:
+          type: object
+          properties:
+            preOxygen:
+              type: string
+            postOxygen:
+              type: string

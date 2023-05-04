@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const CallDetailsSchema = mongoose.Schema(
+const RequirementFormDetailsSchema = mongoose.Schema(
   {
     userId: {
       type: String,
@@ -446,6 +446,6 @@ const CallDetailsSchema = mongoose.Schema(
   }
 );
 
-const CallDetailsModel = mongoose.model("CallDetail", CallDetailsSchema);
+const RequirementFormDetailsModel = mongoose.model("RequirementFormDetail", RequirementFormDetailsSchema);
 
-module.exports = CallDetailsModel;
+module.exports = RequirementFormDetailsModel;

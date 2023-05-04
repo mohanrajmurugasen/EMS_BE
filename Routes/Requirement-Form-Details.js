@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const router = express.Router();
-const CallDetails = require("../Models/CallDetails");
+const RequirementFormDetails = require("../Models/Requirement-Form-Details");
 const nodemailer = require("nodemailer");
 
 router.use(express.json());
@@ -19,12 +19,12 @@ let mailTransporter = nodemailer.createTransport({
 
 /**
  * @swagger
- * /api/CallDetails:
+ * /api/RequirementFormDetails:
  *   post:
  *     tags:
- *       - CallDetails
- *     summary: Create a new CallDetails
- *     description: Create a new CallDetails with the given information
+ *       - RequirementFormDetails
+ *     summary: Create a new RequirementFormDetails
+ *     description: Create a new RequirementFormDetails with the given information
  *     requestBody:
  *       required: true
  *       content:
@@ -256,11 +256,11 @@ let mailTransporter = nodemailer.createTransport({
  *                 type: string
  *     responses:
  *       201:
- *         description: CallDetails created successfully
+ *         description: RequirementFormDetails created successfully
  *       400:
  *         description: Invalid request body
  */
-router.post("/CallDetails", async (req, res) => {
+router.post("/RequirementFormDetails", async (req, res) => {
   const calls = {
     serviceCode: req.body.serviceCode,
     serviceType: req.body.serviceType,
@@ -745,7 +745,7 @@ router.post("/CallDetails", async (req, res) => {
                 `,
   };
 
-  const newDetails = new CallDetails(details);
+  const newDetails = new RequirementFormDetails(details);
   newDetails.save((err, savedObject) => {
     if (err) throw err;
 
@@ -774,18 +774,18 @@ router.post("/CallDetails", async (req, res) => {
 
 /**
  * @swagger
- * /api/CallDetails:
+ * /api/RequirementFormDetails:
  *   get:
  *     tags:
- *       - CallDetails
- *     summary: Get all CallDetails
- *     description: Retrieve a list of all CallDetails
+ *       - RequirementFormDetails
+ *     summary: Get all RequirementFormDetails
+ *     description: Retrieve a list of all RequirementFormDetails
  *     responses:
  *       200:
- *         description: A list of CallDetails
+ *         description: A list of RequirementFormDetails
  */
-router.get("/CallDetails", (req, res) => {
-  CallDetails.find()
+router.get("/RequirementFormDetails", (req, res) => {
+  RequirementFormDetails.find()
     .sort({ createdAt: -1 })
     .then((response) => {
       res.status(200).send({
@@ -798,22 +798,22 @@ router.get("/CallDetails", (req, res) => {
 
 /**
  * @swagger
- * /api/CallDetailsByGraphicLocator/{graphicLocator}:
+ * /api/RequirementFormDetailsByGraphicLocator/{graphicLocator}:
  *   get:
  *     tags:
- *       - CallDetails
- *     summary: Get a CallDetails by ID
- *     description: Retrieve a CallDetails's information by their ID
+ *       - RequirementFormDetails
+ *     summary: Get a RequirementFormDetails by ID
+ *     description: Retrieve a RequirementFormDetails's information by their ID
  *     parameters:
  *       - in: path
  *         name: graphicLocator
  *         required: true
- *         description: ID of the CallDetails to retrieve
+ *         description: ID of the RequirementFormDetails to retrieve
  *         schema:
  *           type: string
  *     responses:
  *       200:
- *         description: CallDetails found
+ *         description: RequirementFormDetails found
  *         content:
  *           application/json:
  *             schema:
@@ -823,7 +823,7 @@ router.get("/CallDetails", (req, res) => {
  *                   type: string
  *                   example: 12345
  *       404:
- *         description: CallDetails not found
+ *         description: RequirementFormDetails not found
  *         content:
  *           application/json:
  *             schema:
@@ -831,11 +831,11 @@ router.get("/CallDetails", (req, res) => {
  *               properties:
  *                 message:
  *                   type: string
- *                   example: CallDetails not found
+ *                   example: RequirementFormDetails not found
  */
-router.get("/CallDetailsByGraphicLocator/:graphicLocator", (req, res) => {
+router.get("/RequirementFormDetailsByGraphicLocator/:graphicLocator", (req, res) => {
   const graphicLocator = req.params.graphicLocator;
-  CallDetails.find({ graphicLocator: graphicLocator })
+  RequirementFormDetails.find({ graphicLocator: graphicLocator })
     .then((response) => {
       res.status(200).send({
         message: "Success",
@@ -847,22 +847,22 @@ router.get("/CallDetailsByGraphicLocator/:graphicLocator", (req, res) => {
 
 /**
  * @swagger
- * /api/CallDetailsById/{_id}:
+ * /api/RequirementFormDetailsById/{_id}:
  *   get:
  *     tags:
- *       - CallDetails
- *     summary: Get a CallDetails by ID
- *     description: Retrieve a CallDetails's information by their ID
+ *       - RequirementFormDetails
+ *     summary: Get a RequirementFormDetails by ID
+ *     description: Retrieve a RequirementFormDetails's information by their ID
  *     parameters:
  *       - in: path
  *         name: _id
  *         required: true
- *         description: ID of the CallDetails to retrieve
+ *         description: ID of the RequirementFormDetails to retrieve
  *         schema:
  *           type: string
  *     responses:
  *       200:
- *         description: CallDetails found
+ *         description: RequirementFormDetails found
  *         content:
  *           application/json:
  *             schema:
@@ -872,7 +872,7 @@ router.get("/CallDetailsByGraphicLocator/:graphicLocator", (req, res) => {
  *                   type: string
  *                   example: 12345
  *       404:
- *         description: CallDetails not found
+ *         description: RequirementFormDetails not found
  *         content:
  *           application/json:
  *             schema:
@@ -880,11 +880,11 @@ router.get("/CallDetailsByGraphicLocator/:graphicLocator", (req, res) => {
  *               properties:
  *                 message:
  *                   type: string
- *                   example: CallDetails not found
+ *                   example: RequirementFormDetails not found
  */
-router.get("/CallDetailsById/:_id", (req, res) => {
+router.get("/RequirementFormDetailsById/:_id", (req, res) => {
   const _id = req.params._id;
-  CallDetails.find({ _id: _id })
+  RequirementFormDetails.find({ _id: _id })
     .then((response) => {
       res.status(200).send({
         message: "Success",
@@ -896,16 +896,16 @@ router.get("/CallDetailsById/:_id", (req, res) => {
 
 /**
  * @swagger
- * /api/CallDetails/{_id}:
+ * /api/RequirementFormDetails/{_id}:
  *   put:
- *     summary: Update a CallDetails by ID
- *     description: Update a CallDetails's information by ID
+ *     summary: Update a RequirementFormDetails by ID
+ *     description: Update a RequirementFormDetails's information by ID
  *     tags:
- *       - CallDetails
+ *       - RequirementFormDetails
  *     parameters:
  *       - name: _id
  *         in: path
- *         description: ID of the CallDetails to update
+ *         description: ID of the RequirementFormDetails to update
  *         required: true
  *         type: string
  *     requestBody:
@@ -921,15 +921,15 @@ router.get("/CallDetailsById/:_id", (req, res) => {
  *                 type: string
  *     responses:
  *       200:
- *         description: CallDetails updated successfully
+ *         description: RequirementFormDetails updated successfully
  *       400:
- *         description: Invalid CallDetails ID supplied or invalid CallDetails object
+ *         description: Invalid RequirementFormDetails ID supplied or invalid RequirementFormDetails object
  *       404:
- *         description: CallDetails not found
+ *         description: RequirementFormDetails not found
  */
-router.put("/CallDetails/:_id", (req, res) => {
+router.put("/RequirementFormDetails/:_id", (req, res) => {
   const _id = req.params._id;
-  CallDetails.findById(_id, (err, result) => {
+  RequirementFormDetails.findById(_id, (err, result) => {
     if (!result) {
       res.status(400).send({
         message: "Unable to update data please try again!",
@@ -960,24 +960,24 @@ router.put("/CallDetails/:_id", (req, res) => {
  *   description: This is a sample API for demonstration purposes.
  *   version: 1.0.0
  *
- * /api/DeleteCallDetailsById/{_id}:
+ * /api/DeleteRequirementFormDetailsById/{_id}:
  *   delete:
  *     tags:
- *       - CallDetails
- *     summary: Delete a CallDetails by ID
- *     description: Delete a CallDetails's information by their ID
+ *       - RequirementFormDetails
+ *     summary: Delete a RequirementFormDetails by ID
+ *     description: Delete a RequirementFormDetails's information by their ID
  *     parameters:
  *       - in: path
  *         name: _id
  *         required: true
- *         description: ID of the CallDetails to delete
+ *         description: ID of the RequirementFormDetails to delete
  *         schema:
  *           type: string
  *     responses:
  *       204:
- *         description: CallDetails deleted successfully
+ *         description: RequirementFormDetails deleted successfully
  *       404:
- *         description: CallDetails not found
+ *         description: RequirementFormDetails not found
  *         content:
  *           application/json:
  *             schema:
@@ -985,11 +985,11 @@ router.put("/CallDetails/:_id", (req, res) => {
  *               properties:
  *                 message:
  *                   type: string
- *                   example: CallDetails not found
+ *                   example: RequirementFormDetails not found
  */
-router.delete("/DeleteCallDetailsById/:_id", (req, res) => {
+router.delete("/DeleteRequirementFormDetailsById/:_id", (req, res) => {
   const _id = req.params._id;
-  CallDetails.findByIdAndRemove(_id, (err, result) => {
+  RequirementFormDetails.findByIdAndRemove(_id, (err, result) => {
     if (err) {
       res.json(err);
     } else {

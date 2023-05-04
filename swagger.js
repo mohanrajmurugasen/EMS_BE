@@ -10,13 +10,9 @@ const options = {
     },
   },
   apis: [
-    "./Routes/Assessment.js",
-    "./Routes/CallDetails.js",
-    "./Routes/Treatment.js",
+    "./Routes/Requirement-Form-Details.js",
     "./Routes/Users.js",
-    "./Schemas/Assessment.yaml",
-    "./Schemas/CallDetails.yaml",
-    "./Schemas/Treatment.yaml",
+    "./Schemas/Requirement-Form-Details.yaml",
     "./Schemas/Users.yaml",
   ],
   // apis: [

@@ -53,7 +53,7 @@ components:
               type: string
             diastolic:
               type: string
-        respiration:
+        treatment_respiration:
           type: string
         bloodGlucose:
           type: string
