@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 mongoose.connect(
-  "mongodb+srv://nandhinirs93:WEsjx0ArshoJyWgh@ems.mzuk7az.mongodb.net/EMS?retryWrites=true&w=majority"
+  "mongodb+srv://Sampleforcompany2:Sampleforcompany_2@ems.ejojeol.mongodb.net/EMS?retryWrites=true&w=majority"
 );
 
 // Group the endpoints under their respective headings
